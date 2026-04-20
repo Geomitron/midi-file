@@ -986,6 +986,30 @@ compare(
   "Uint8Array"
 );
 
+// Text meta events must encode UTF-8 and prefix with the BYTE count, not the
+// UTF-16 code-unit count. Before the fix, writeVarInt(text.length) under-
+// counted multi-byte strings and corrupted subsequent events on re-parse.
+const utf8Cases: { label: string; text: string }[] = [
+  { label: "ASCII", text: "Hello World" },
+  { label: "Latin-1 accented", text: "Éric Cl\u00e4pton" },
+  { label: "Japanese", text: "こんにちは世界" },
+  { label: "Emoji", text: "Rock \u{1F3B8} On" },
+];
+for (const { label, text } of utf8Cases) {
+  const data: MidiData = {
+    header: { format: 0, numTracks: 1, ticksPerBeat: 480 },
+    tracks: [[
+      { deltaTime: 0, meta: true, type: "trackName", text },
+      { deltaTime: 10, meta: true, type: "text", text },
+      { deltaTime: 10, meta: true, type: "lyrics", text },
+      { deltaTime: 10, channel: 0, type: "noteOn", noteNumber: 60, velocity: 80 },
+      { deltaTime: 10, channel: 0, type: "noteOff", noteNumber: 60, velocity: 0 },
+      { deltaTime: 0, meta: true, type: "endOfTrack" },
+    ]],
+  };
+  compare(data, parseMidi(writeMidi(data)), `UTF-8 ${label}`);
+}
+
 console.log(`errors=${errors}`);
 
 declare var process: { exitCode?: number };
