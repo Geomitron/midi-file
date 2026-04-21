@@ -1,17 +1,20 @@
 {
-  "name": "midi-file",
-  "version": "1.2.4",
+  "name": "@geomitron/midi-file",
+  "version": "1.2.5",
   "description": "Parse and write MIDI files",
   "main": "index.js",
   "types": "index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "ts-node ./tests/tsd.ts"
   },
-  "author": "Carter Thaxton",
+  "author": "Geo",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/carter-thaxton/midi-file.git"
+    "url": "git+https://github.com/Geomitron/midi-file.git"
   },
   "keywords": [
     "MIDI",
@@ -20,9 +23,9 @@
     "write"
   ],
   "bugs": {
-    "url": "https://github.com/carter-thaxton/midi-file/issues"
+    "url": "https://github.com/Geomitron/midi-file/issues"
   },
-  "homepage": "https://github.com/carter-thaxton/midi-file#readme",
+  "homepage": "https://github.com/Geomitron/midi-file#readme",
   "devDependencies": {
     "@types/node": "^16.11.10",
     "ts-node": "^10.4.0",

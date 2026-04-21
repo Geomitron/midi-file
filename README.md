@@ -1,6 +1,6 @@
 # midi-file
 
-Install with `yarn add midi-file` or `npm install midi-file`.
+Install with `yarn add @geomitron/midi-file` or `npm install @geomitron/midi-file`.
 
 The parser is loosely based on [midi-file-parser](https://github.com/NHQ/midi-file-parser) and [jasmid](https://github.com/gasman/jasmid), but totally rewritten to use arrays instead of strings for portability.
 
@@ -8,7 +8,7 @@ The parser is loosely based on [midi-file-parser](https://github.com/NHQ/midi-fi
 
 ```Typescript
 import * as fs from 'fs';
-import * as midiManager from 'midi-file';
+import * as midiManager from '@geomitron/midi-file';
 
 // Read MIDI file into a buffer
 const input = fs.readFileSync('star_wars.mid');
@@ -28,8 +28,8 @@ fs.writeFileSync('copy_star_wars.mid', outputBuffer);
 
 ```js
 var fs = require('fs')
-var parseMidi = require('midi-file').parseMidi
-var writeMidi = require('midi-file').writeMidi
+var parseMidi = require('@geomitron/midi-file').parseMidi
+var writeMidi = require('@geomitron/midi-file').writeMidi
 
 // Read MIDI file into a buffer
 var input = fs.readFileSync('star_wars.mid')
